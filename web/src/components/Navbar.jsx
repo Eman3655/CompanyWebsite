@@ -195,6 +195,11 @@ export default function Navbar() {
               >
                 {lang === "ar" ? "من نحن" : "About"}
               </NavLink>
+
+            <NavLink to="/services" className={navLinkClass}>
+              {lang === "ar" ? "الخدمات" : "Services"}
+            </NavLink>
+
               <NavLink
                 to="/projects"
                 className={navLinkClass}
