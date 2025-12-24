@@ -293,7 +293,7 @@ const CONTENT = {
         { icon: Mail, label: "البريد الإلكتروني", value: "enganasrekeb@gmail.com" },
         { icon: Phone, label: "هاتف/فاكس", value: "+970 8 2072330" },
         { icon: Phone, label: "الجوال", value: "+970 599 401196" },
-        { icon: FileText, label: "الموقع الإلكتروني", value: "Under Development" },
+        { icon: FileText, label: "الموقع الإلكتروني", value: "https://companywebsite-production.up.railway.app/" },
       ],
     },
     en: {
@@ -311,7 +311,7 @@ const CONTENT = {
         { icon: Mail, label: "Email", value: "enganasrekeb@gmail.com" },
         { icon: Phone, label: "Tel / Fax", value: "+970 8 2072330" },
         { icon: Phone, label: "Mobile", value: "+970 599 401196" },
-        { icon: FileText, label: "Website", value: "Under Development" },
+        { icon: FileText, label: "Website", value: "https://companywebsite-production.up.railway.app/" },
       ],
     },
   },
