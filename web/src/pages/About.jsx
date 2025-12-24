@@ -911,7 +911,8 @@ export default function About() {
     <div
       key={`ci-long-${idx}`}
       className="
-        rounded-2xl border border-white/10 bg-white/[0.03]
+        rounded-2xl border border-black/10 bg-black/[0.02]
+        dark:border-white/10 dark:bg-white/[0.03]
         p-4
       "
     >
@@ -919,17 +920,18 @@ export default function About() {
         <div
           className="
             h-12 w-12 rounded-2xl grid place-items-center shrink-0
-            bg-sky-500/12 border border-sky-500/20 text-sky-300
+            bg-sky-500/12 border border-sky-500/20 text-sky-700
+            dark:bg-sky-500/15 dark:border-sky-400/25 dark:text-sky-300
           "
         >
           <it.icon className="h-6 w-6" />
         </div>
 
         <div className="min-w-0">
-          <div className="text-xs font-bold text-white/60">
+          <div className="text-xs font-bold text-slate-500 dark:text-white/60">
             {it.label}
           </div>
-          <div className="mt-1 font-semibold text-white break-words">
+          <div className="mt-1 font-semibold text-slate-900 dark:text-white break-words">
             {it.value}
           </div>
         </div>
@@ -937,6 +939,7 @@ export default function About() {
     </div>
   ))}
 </div>
+
 
           </MotionCard>
 
