@@ -32,7 +32,14 @@ export default function Hero() {
           <div className={`max-w-3xl ${isAr ? "text-right" : "text-left"}`}>
 
             <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.05] text-white drop-shadow-lg">
-              {isAr ? "التميّز الهندسي، نبني الغد" : "Engineering Excellence, Building Tomorrow"}
+              {isAr ? (
+  <>
+    التميّز الهندسي،
+    <span className="block">
+      نبني الغد
+    </span>
+  </>
+) : "Engineering Excellence, Building Tomorrow"}
             </h1>
 
             <p className="mt-5 text-base sm:text-lg md:text-xl text-white/95 drop-shadow">
