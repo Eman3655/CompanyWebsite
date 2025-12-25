@@ -1,4 +1,4 @@
-import React, { useMemo , useState } from "react";
+import React, { useMemo, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowRight,
@@ -244,39 +244,44 @@ const projects = [
     value: "USD 203,264",
     image:
       "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679900/photo_5938552633830345663_y_qnnvfi.jpg",
-
     media: [
-    {
-      type: "image",
-      src: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679902/photo_5938552633830345661_y_f7wvc3.jpg",
-      thumb: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679902/photo_5938552633830345661_y_f7wvc3.jpg" 
-    },
-    {
-      type: "image",
-      src: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679901/photo_5938552633830345660_y_eiy5ew.jpg",
-      thumb: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679901/photo_5938552633830345660_y_eiy5ew.jpg"
-    },
-    {
-      type: "image",
-      src: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679900/photo_5938552633830345663_y_qnnvfi.jpg",
-      thumb: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679900/photo_5938552633830345663_y_qnnvfi.jpg"
-    },
-    {
-      type: "video",
-      src: "https://res.cloudinary.com/dptlhu0s0/video/upload/v1766679900/document_5938552633370351915_xircdq.mp4",
-      thumb: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766680426/Screenshot_2025-12-25_183324_dviobn.jpg" 
-    }
-    ,{
-      type: "video",
-      src: "https://res.cloudinary.com/dptlhu0s0/video/upload/v1766679900/document_5938552633370351917_qpwcbb.mp4",
-      thumb: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766680348/Screenshot_2025-12-25_183155_xlvvov.jpg" 
-    }
-        ,{
-      type: "video",
-      src: "https://res.cloudinary.com/dptlhu0s0/video/upload/v1766679902/document_5938552633370351916_g2eufd.mp4",
-      thumb: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766680516/Screenshot_2025-12-25_183442_m7xvnm.jpg" 
-    }
-  ]
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679902/photo_5938552633830345661_y_f7wvc3.jpg",
+        thumb:
+          "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679902/photo_5938552633830345661_y_f7wvc3.jpg",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679901/photo_5938552633830345660_y_eiy5ew.jpg",
+        thumb:
+          "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679901/photo_5938552633830345660_y_eiy5ew.jpg",
+      },
+      {
+        type: "image",
+        src: "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679900/photo_5938552633830345663_y_qnnvfi.jpg",
+        thumb:
+          "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679900/photo_5938552633830345663_y_qnnvfi.jpg",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dptlhu0s0/video/upload/v1766679900/document_5938552633370351915_xircdq.mp4",
+        thumb:
+          "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766680426/Screenshot_2025-12-25_183324_dviobn.jpg",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dptlhu0s0/video/upload/v1766679900/document_5938552633370351917_qpwcbb.mp4",
+        thumb:
+          "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766680348/Screenshot_2025-12-25_183155_xlvvov.jpg",
+      },
+      {
+        type: "video",
+        src: "https://res.cloudinary.com/dptlhu0s0/video/upload/v1766679902/document_5938552633370351916_g2eufd.mp4",
+        thumb:
+          "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766680516/Screenshot_2025-12-25_183442_m7xvnm.jpg",
+      },
+    ],
   },
 ];
 
@@ -290,7 +295,7 @@ function MotionCard({ children, className = "" }) {
       <div
         className={cx(
           `
-          group relative rounded-3xl
+          group relative w-full rounded-3xl
           border border-black/10 bg-white
           dark:border-white/10 dark:bg-slate-950/60
           shadow-[0_18px_70px_rgba(2,6,23,0.08)]
@@ -310,7 +315,7 @@ function MotionCard({ children, className = "" }) {
             dark:shadow-[0_0_0_1px_rgba(56,189,248,0.35),0_0_60px_rgba(56,189,248,0.18)]
           "
         />
-        <div className="relative z-10 p-6 sm:p-8">{children}</div>
+        <div className="relative z-10 p-4 sm:p-6 md:p-8">{children}</div>
       </div>
     </Reveal>
   );
@@ -437,13 +442,12 @@ function MediaGallery({ media = [], isAr }) {
   if (!media || media.length === 0) return null;
 
   const current = media[activeIndex];
-
   const isVideo = current.type === "video";
 
   return (
     <MotionCard>
-      <div className="flex flex-col gap-5">
-        <div className={cx("flex items-center justify-between")}>
+      <div className="flex flex-col gap-4 sm:gap-5">
+        <div className="flex items-center justify-between">
           <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
             {isAr ? "معرض المشروع" : "Project Media"}
           </h2>
@@ -452,36 +456,43 @@ function MediaGallery({ media = [], isAr }) {
           </span>
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-black/10 dark:border-white/10">
+        <div className="relative w-full overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 bg-black">
           {isVideo ? (
-            <div className="relative bg-black">
-              <video
-                key={current.src}
-                src={current.src}
-                controls
-                className="w-full max-h-[420px] object-contain bg-black"
-              />
-            </div>
+            <video
+              key={current.src}
+              src={current.src}
+              controls
+              className="
+                w-full
+                max-h-[260px] sm:max-h-[360px]
+                object-contain
+                bg-black
+              "
+            />
           ) : (
             <div className="relative">
               <img
                 src={current.src}
                 alt=""
                 loading="lazy"
-                className="w-full max-h-[420px] object-cover transition duration-500"
+                className="
+                  w-full
+                  max-h-[260px] sm:max-h-[360px]
+                  object-cover
+                  transition duration-500
+                "
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
             </div>
           )}
         </div>
 
-<div
-  className={cx(
-    "flex gap-3 overflow-x-auto pb-1 media-scroll",
-    isAr ? "flex-row-reverse" : "flex-row"
-  )}
->
-
+        <div
+          className={cx(
+            "flex gap-3 overflow-x-auto pb-2 -mx-1 sm:mx-0 media-scroll",
+            isAr ? "flex-row-reverse" : "flex-row"
+          )}
+        >
           {media.map((item, idx) => {
             const isActive = idx === activeIndex;
             const thumbIsVideo = item.type === "video";
@@ -493,9 +504,9 @@ function MediaGallery({ media = [], isAr }) {
                 type="button"
                 onClick={() => setActiveIndex(idx)}
                 className={cx(
-                  "relative shrink-0 rounded-xl overflow-hidden border",
+                  "relative shrink-0 rounded-xl overflow-hidden border mx-1 sm:mx-0",
                   "transition-all duration-200",
-                  "h-20 w-32 sm:h-24 sm:w-40",
+                  "h-20 w-28 sm:h-24 sm:w-40",
                   isActive
                     ? "border-sky-500 ring-2 ring-sky-400/70"
                     : "border-black/10 dark:border-white/10 hover:border-sky-300/70 dark:hover:border-sky-400/60"
@@ -579,9 +590,9 @@ export default function ProjectDetails() {
   }
 
   return (
-    <main dir={isAr ? "rtl" : "ltr"} className="w-full">
+    <main dir={isAr ? "rtl" : "ltr"} className="w-full pb-12 sm:pb-16">
       <header className="relative overflow-hidden">
-        <div className="relative h-[52svh] min-h-[360px]">
+        <div className="relative h-[48vh] sm:h-[52vh] min-h-[320px] sm:min-h-[360px]">
           <img
             src={project.image}
             alt={project.title[lang]}
@@ -592,7 +603,7 @@ export default function ProjectDetails() {
           <div className="absolute inset-0 bg-gradient-to-r from-sky-500/18 via-cyan-500/12 to-emerald-500/18" />
 
           <div className="relative z-10 h-full flex items-end">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-10">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10">
               <Reveal>
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-wrap items-center justify-between gap-3">
@@ -620,7 +631,7 @@ export default function ProjectDetails() {
                     </div>
                   </div>
 
-                  <h1 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
                     {project.title[lang]}
                   </h1>
 
@@ -645,15 +656,15 @@ export default function ProjectDetails() {
         </div>
       </header>
 
-      <section className="py-16">
+      <section className="pt-10 sm:pt-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-3">
-            <div className="lg:col-span-2 space-y-8">
+          <div className="grid gap-6 lg:gap-8 lg:grid-cols-3 items-start">
+            <div className="lg:col-span-2 space-y-6 sm:space-y-8">
               <MotionCard>
-                <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
                   {isAr ? "وصف المشروع" : "Project Overview"}
                 </h2>
-                <p className="mt-3 leading-7 text-slate-700 dark:text-white/80">
+                <p className="mt-3 leading-7 text-slate-700 dark:text-white/80 text-sm sm:text-base">
                   {project.desc[lang]}
                 </p>
 
@@ -668,14 +679,15 @@ export default function ProjectDetails() {
                   </div>
                 </div>
               </MotionCard>
-                  {project.media && project.media.length > 0 && (
-                 <MediaGallery media={project.media} isAr={isAr} />
-                    )}
+
+              {project.media && project.media.length > 0 && (
+                <MediaGallery media={project.media} isAr={isAr} />
+              )}
             </div>
 
             <div className="space-y-5">
               <MotionCard>
-                <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white">
                   {isAr ? "تفاصيل المشروع" : "Project Details"}
                 </h2>
 
@@ -712,7 +724,9 @@ export default function ProjectDetails() {
                       "bg-sky-600 text-white hover:bg-sky-500"
                     )}
                   >
-                    {isAr ? "تواصل معنا بخصوص مشاريع مشابهة" : "Discuss a similar project"}
+                    {isAr
+                      ? "تواصل معنا بخصوص مشاريع مشابهة"
+                      : "Discuss a similar project"}
                     <ArrowRight
                       className={`h-4 w-4 ${isAr ? "rotate-180" : ""}`}
                     />
@@ -722,8 +736,8 @@ export default function ProjectDetails() {
             </div>
           </div>
 
-          <div className="mt-12">
-            <div className="flex items-end justify-between">
+          <div className="mt-10 sm:mt-12">
+            <div className="flex items-end justify-between gap-3 flex-wrap">
               <div>
                 <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
                   {isAr ? "مشاريع مرتبطة" : "Related Projects"}

@@ -46,32 +46,15 @@ export default function ContactPage() {
     [isAr]
   );
 
-  const emailHref = useMemo(() => {
-    const to = CONTACT.email;
-    const subject = isAr
-      ? "استفسار من موقع الشركة"
-      : "Inquiry from Engineering Projects Company website";
-    const body = isAr
-      ? "السلام عليكم،\n\nأود الاستفسار بخصوص ..."
-      : "Dear Engineering Projects Company,\n\nI would like to inquire about ...";
+ const emailHref = useMemo(() => {
+  return `mailto:${CONTACT.email}`;
+}, [CONTACT.email]);
 
-    const params = new URLSearchParams({
-      subject,
-      body,
-    });
 
-    return `mailto:${to}?${params.toString()}`;
-  }, [CONTACT.email, isAr]);
-
-  const whatsappHref = useMemo(() => {
-    const num = CONTACT.mobile.replace(/\D/g, ""); 
-    const text = encodeURIComponent(
-      isAr
-        ? "مرسل من موقع الشركة – أود الاستفسار."
-        : "Sent from the company website – I'd like to inquire."
-    );
-    return `https://wa.me/${num}?text=${text}`;
-  }, [CONTACT.mobile, isAr]);
+const whatsappHref = useMemo(() => {
+  const num = CONTACT.mobile.replace(/\D/g, ""); 
+  return `https://wa.me/${num}`;
+}, [CONTACT.mobile]);
 
   return (
     <main dir={isAr ? "rtl" : "ltr"} className="py-10 sm:py-14">
