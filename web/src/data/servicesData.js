@@ -79,7 +79,7 @@ export const SERVICES = [
     },
     grade: { ar: "درجة II", en: "Grade II" },
     cover:
-      "https://images.unsplash.com/photo-1523419409543-a5e549c1faa3?auto=format&fit=crop&w=2200&q=75",
+      "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766675787/aerial-view-shanghai-overpass-night_ciyvbk.jpg",
     gallery: [
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=75",
       "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=75",
@@ -132,7 +132,7 @@ export const SERVICES = [
     },
     grade: { ar: "درجة III", en: "Grade III" },
     cover:
-      "https://images.unsplash.com/photo-1581092335397-9fa341108f5d?auto=format&fit=crop&w=2200&q=75",
+      "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766675334/pexels-tima-miroshnichenko-5845969_yamqqc.jpg",
     gallery: [
       "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=75",
       "https://images.unsplash.com/photo-1581091870622-7c4245f6c1d1?auto=format&fit=crop&w=1200&q=75",
@@ -185,7 +185,7 @@ export const SERVICES = [
     },
     grade: { ar: "درجة V", en: "Grade V" },
     cover:
-      "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?auto=format&fit=crop&w=2200&q=75",
+      "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766677486/AdobeStock_374747543_Preview_ugapm5.jpg",
     gallery: [
       "https://images.unsplash.com/photo-1567606400547-7f7f86f78f85?auto=format&fit=crop&w=1200&q=75",
       "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&w=1200&q=75",

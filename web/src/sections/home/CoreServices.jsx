@@ -41,7 +41,6 @@ export default function CoreServices({ scrollDir = "down" }) {
   return (
     <section id="services" className="py-12 sm:py-16" dir={isAr ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Heading */}
         <div className={`text-center ${isAr ? "sm:text-right" : "sm:text-left"}`}>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
             {isAr ? "خدماتنا الأساسية" : "Our Core Services"}
@@ -53,7 +52,6 @@ export default function CoreServices({ scrollDir = "down" }) {
           </p>
         </div>
 
-        {/* Cards (Animated) */}
         <StaggerInGrid dir={scrollDir} className="mt-10 grid gap-6 md:grid-cols-3">
           {services.map((s) => {
             const Icon = s.icon;
@@ -72,7 +70,6 @@ export default function CoreServices({ scrollDir = "down" }) {
                   hover:-translate-y-2
                 "
               >
-                {/* Glow border */}
                 <div
                   className="
                     pointer-events-none absolute inset-0 rounded-2xl opacity-0
@@ -120,7 +117,6 @@ export default function CoreServices({ scrollDir = "down" }) {
           })}
         </StaggerInGrid>
 
-        {/* See All Services */}
         <div className="mt-10 text-center">
           <NavLink
             to="/services"

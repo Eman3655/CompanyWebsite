@@ -293,7 +293,7 @@ const CONTENT = {
         { icon: Mail, label: "البريد الإلكتروني", value: "enganasrekeb@gmail.com" },
         { icon: Phone, label: "هاتف/فاكس", value: "+970 8 2072330" },
         { icon: Phone, label: "الجوال", value: "+970 599 401196" },
-        { icon: FileText, label: "الموقع الإلكتروني", value: "https://companywebsite-production.up.railway.app/" },
+        { icon: FileText, label: "الموقع الإلكتروني", value: "https://companywebsite-production.up.railway.app" },
       ],
     },
     en: {

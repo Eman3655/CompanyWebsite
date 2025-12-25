@@ -2,6 +2,7 @@ import Hero from "../sections/home/Hero";
 import CoreServices from "../sections/home/CoreServices";
 import FeaturedProjects from "../sections/home/FeaturedProjects";
 import Stats from "../sections/home/Stats";
+import HomePartnersSection from "../sections/home/HomePartnersSection";
 
 import ScrollSection from "../components/motion/ScrollFoldSection";
 import { useScrollDirection } from "../hooks/useScrollDirection";
@@ -35,6 +36,14 @@ export default function Home() {
         <div className="w-full">
           <ScrollSection>
             <Stats scrollDir={dir} />
+          </ScrollSection>
+        </div>
+      </section>
+
+      <section id="HomePartnersSection" className="snap min-h-[100svh] flex items-center">
+        <div className="w-full">
+          <ScrollSection>
+            <HomePartnersSection scrollDir={dir} />
           </ScrollSection>
         </div>
       </section>

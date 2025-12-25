@@ -1,17 +1,14 @@
+// src/pages/ServicesDetails.jsx
 import React from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 import { useLang } from "../hooks/useLang";
 import { SERVICES, PROJECTS } from "../data/servicesData";
 import {
   ArrowRight,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  Sparkles,
-  ShieldCheck,
   ClipboardCheck,
+  CheckCircle2,
+  ShieldCheck,
   Timer,
-  ExternalLink,
 } from "lucide-react";
 import { Reveal } from "../components/motion/Reveal";
 
@@ -19,127 +16,54 @@ function cx(...a) {
   return a.filter(Boolean).join(" ");
 }
 
-function Pill({ children }) {
+function MotionCard({ children, className = "" }) {
   return (
-    <span
-      className="
-        inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold
-        bg-white/85 text-slate-900 ring-1 ring-black/10
-        dark:bg-white/10 dark:text-white/85 dark:ring-white/15
-      "
-    >
-      {children}
-    </span>
-  );
-}
-
-function LuxeCard({ children, className = "" }) {
-  return (
-    <div
-      className={cx(
-        `
-        relative rounded-3xl overflow-hidden
-        border border-black/10 bg-white
-        dark:border-white/10 dark:bg-slate-950
-        shadow-[0_18px_60px_rgba(2,6,23,0.08)]
-        dark:shadow-[0_28px_90px_rgba(0,0,0,0.50)]
+    <Reveal>
+      <div
+        className={cx(
+          `
+          group relative rounded-3xl
+          border border-black/10 bg-white
+          dark:border-white/10 dark:bg-slate-950/60
+          shadow-[0_18px_70px_rgba(2,6,23,0.08)]
+          dark:shadow-[0_28px_90px_rgba(0,0,0,0.55)]
+          transition-transform duration-300
+          hover:-translate-y-2
         `,
-        className
-      )}
-    >
-      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-300 opacity-80" />
-      {children}
-    </div>
-  );
-}
-
-function SectionTitle({ title, desc, align }) {
-  return (
-    <div className={cx("mb-5", align === "right" ? "text-right" : "text-left")}>
-      <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-        {title}
-      </h2>
-      {desc ? (
-        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-white/70">
-          {desc}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-function MicroStat({ k, v }) {
-  return (
-    <div className="rounded-2xl border border-black/10 bg-black/[0.02] p-4 dark:border-white/10 dark:bg-white/[0.03]">
-      <div className="text-xs font-semibold text-slate-500 dark:text-white/60">
-        {k}
-      </div>
-      <div className="mt-1 text-base font-extrabold text-slate-900 dark:text-white">
-        {v}
-      </div>
-    </div>
-  );
-}
-
-function FeatureItem({ icon: Icon, title, desc }) {
-  return (
-    <div className="rounded-2xl border border-black/10 bg-white p-5 dark:border-white/10 dark:bg-slate-950">
-      <div className="flex items-start gap-3">
+          className
+        )}
+      >
         <div
           className="
-            h-11 w-11 rounded-2xl grid place-items-center
-            bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/20
-            dark:bg-sky-500/15 dark:text-sky-200 dark:ring-sky-400/20
+            pointer-events-none absolute -inset-0.5 rounded-3xl opacity-0
+            group-hover:opacity-100 transition duration-300
+            ring-1 ring-sky-400/55
+            shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_50px_rgba(56,189,248,0.12)]
+            dark:shadow-[0_0_0_1px_rgba(56,189,248,0.35),0_0_60px_rgba(56,189,248,0.18)]
           "
-        >
-          <Icon className="h-5 w-5" />
-        </div>
-        <div className="min-w-0">
-          <div className="text-sm font-extrabold text-slate-900 dark:text-white">
-            {title}
-          </div>
-          <div className="mt-1 text-sm leading-6 text-slate-600 dark:text-white/70">
-            {desc}
-          </div>
-        </div>
+        />
+        <div className="relative z-10 p-6 sm:p-8">{children}</div>
       </div>
-    </div>
+    </Reveal>
   );
 }
 
-function Masonry({ images = [] }) {
-  return (
-    <div className="grid gap-3 sm:grid-cols-12">
-      <div className="sm:col-span-7">
-        <div className="relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10">
-          <img
-            src={images[0]}
-            alt=""
-            className="h-64 sm:h-72 w-full object-cover transition duration-500 hover:scale-[1.02]"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-        </div>
-      </div>
+const SERVICE_COVERS = {
+  "building-construction":
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2000&q=70",
+  "roads-infrastructure":
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=70",
+  "electromechanical-works":
+    "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766675334/pexels-tima-miroshnichenko-5845969_yamqqc.jpg",
+  "water-sewerage":
+    "https://images.unsplash.com/photo-1526481280695-3c687fd543c0?auto=format&fit=crop&w=2000&q=70",
+  "general-trading":
+    "https://images.unsplash.com/photo-1586521995568-39eec03b89ab?auto=format&fit=crop&w=2000&q=70",
+};
 
-      <div className="sm:col-span-5 grid gap-3">
-        {images.slice(1, 4).map((src, i) => (
-          <div
-            key={i}
-            className="relative overflow-hidden rounded-3xl border border-black/10 dark:border-white/10"
-          >
-            <img
-              src={src}
-              alt=""
-              className="h-20 sm:h-[92px] w-full object-cover transition duration-500 hover:scale-[1.03]"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-transparent" />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+function getServiceCover(service) {
+  if (!service) return null;
+  return service.cover || SERVICE_COVERS[service.id] || SERVICE_COVERS["building-construction"];
 }
 
 export default function ServiceDetails() {
@@ -148,416 +72,304 @@ export default function ServiceDetails() {
   const isAr = lang === "ar";
   const nav = useNavigate();
 
-  const idx = SERVICES.findIndex((s) => s.id === id);
-  const service = idx >= 0 ? SERVICES[idx] : null;
-  const prev = idx > 0 ? SERVICES[idx - 1] : null;
-  const next = idx >= 0 && idx < SERVICES.length - 1 ? SERVICES[idx + 1] : null;
-
-  const related = React.useMemo(
-    () =>
-      PROJECTS.filter((p) => p.serviceId === id).sort(
-        (a, b) => Number(b.year) - Number(a.year)
-      ),
-    [id]
-  );
+  const service = SERVICES.find((s) => s.id === id);
 
   if (!service) {
     return (
       <main className="py-16">
         <div className="mx-auto max-w-4xl px-4">
-          <LuxeCard>
-            <div className="p-7">
-              <div className="text-xl font-extrabold text-slate-900 dark:text-white">
-                {isAr ? "الخدمة غير موجودة" : "Service not found"}
-              </div>
-              <button
-                onClick={() => nav("/services")}
-                className="mt-4 inline-flex items-center gap-2 font-semibold text-sky-700 dark:text-sky-300"
-              >
-                {isAr ? "العودة للخدمات" : "Back to Services"}
-                <ArrowRight className={cx("h-4 w-4", isAr && "rotate-180")} />
-              </button>
+          <MotionCard>
+            <div className="text-xl font-extrabold text-slate-900 dark:text-white">
+              {isAr ? "الخدمة غير موجودة" : "Service not found"}
             </div>
-          </LuxeCard>
+
+            <button
+              onClick={() => nav("/services")}
+              className="mt-4 inline-flex items-center gap-2 font-semibold text-sky-600 dark:text-sky-300"
+            >
+              {isAr ? "العودة للخدمات" : "Back to services"}
+              <ArrowRight className={cx("h-4 w-4", isAr && "rotate-180")} />
+            </button>
+          </MotionCard>
         </div>
       </main>
     );
   }
 
   const Icon = service.icon;
+  const cover = getServiceCover(service);
+
+  const relatedAll = PROJECTS
+    .filter((p) => p.serviceId === id)
+    .sort((a, b) => Number(b.year) - Number(a.year));
+
+  const related = relatedAll.slice(0, 4); 
 
   const t = {
     badge: isAr ? "تفاصيل الخدمة" : "Service Details",
-    grade: isAr ? "التصنيف" : "Classification",
-    overviewTitle: isAr ? "نظرة عامة" : "Overview",
-    deliverTitle: isAr ? "نطاق العمل" : "Scope of work",
-    processTitle: isAr ? "منهج التنفيذ" : "Delivery approach",
-    processDesc: isAr
-      ? "طريقة عمل منظمة تُظهر الاحتراف والالتزام."
-      : "A structured process that reflects discipline and commitment.",
-    relatedTitle: isAr ? "خبرات ذات صلة" : "Relevant experience",
-    relatedDesc: isAr
-      ? "مشاريع مرتبطة."
-      : "Related projects.",
-    contact: isAr ? "تواصل معنا" : "Contact us",
+    overview: isAr ? "نبذة عن الخدمة" : "Service Overview",
+    bullets: isAr ? "ملامح الخدمة" : "Service Highlights",
+    scope: isAr ? "نطاق العمل" : "Scope of Work",
+    process: isAr ? "منهج التنفيذ" : "Delivery Approach",
+    related: isAr ? "مشاريع مرتبطة" : "Relevant Experience",
     back: isAr ? "العودة للخدمات" : "Back to Services",
-    browse: isAr ? "تصفح الخدمات" : "Browse services",
-    next: isAr ? "التالي" : "Next",
-    prev: isAr ? "السابق" : "Previous",
+    contact: isAr ? "تواصل معنا" : "Contact Us",
+    seeAllProjects: isAr ? "عرض كل المشاريع" : "View all projects",
   };
 
   return (
-    <main dir={isAr ? "rtl" : "ltr"} className="pb-16">
-      <header className="relative">
-        <div className="relative h-[52vh] sm:h-[60vh] overflow-hidden">
-          <img
-            src={service.cover}
-            alt={service.title[lang]}
-            className="absolute inset-0 h-full w-full object-cover"
-            loading="lazy"
-          />
+    <main dir={isAr ? "rtl" : "ltr"} className="w-full">
+      <header className="relative overflow-hidden">
+        <div className="relative h-[52svh] min-h-[320px] bg-slate-950">
+          {cover && (
+            <img
+              src={cover}
+              alt={service.title[lang]}
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+          )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/35 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-950/10 to-emerald-950/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/75 to-slate-950/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-sky-500/15 via-cyan-500/10 to-emerald-500/15" />
 
-          <div className="absolute -bottom-1 left-0 right-0 h-24 bg-white dark:bg-slate-950 [clip-path:polygon(0_55%,100%_0,100%_100%,0_100%)]" />
-        </div>
-
-        <div className="relative -mt-20 sm:-mt-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Reveal from={isAr ? "right" : "left"}>
-              <div className="grid gap-5 lg:grid-cols-12 items-end">
-                <div className="lg:col-span-8">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Pill>
-                      <Sparkles className="h-4 w-4" />
-                      {t.badge}
-                    </Pill>
-                    <Pill>
-                      {t.grade}: {isAr ? service.grade.ar : service.grade.en}
-                    </Pill>
+          <div className="relative z-10 h-full flex items-center">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <Reveal>
+                <div className="flex items-start gap-4">
+                  <div
+                    className="
+                      h-16 w-16 rounded-3xl grid place-items-center
+                      bg-white/12 border border-white/20 text-white
+                    "
+                  >
+                    <Icon className="h-8 w-8" />
                   </div>
 
-                  <div className="mt-5 flex items-start gap-4">
-                    <div
-                      className="
-                        h-14 w-14 rounded-3xl grid place-items-center
-                        bg-white/90 text-slate-900 ring-1 ring-black/10
-                        dark:bg-white/10 dark:text-white dark:ring-white/15
-                      "
-                    >
-                      <Icon className="h-7 w-7" />
-                    </div>
+                  <div className="min-w-0">
+                    <div className="text-sm text-white/80">{t.badge}</div>
 
-                    <div className="min-w-0">
-                      <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                        {service.title[lang]}
-                      </h1>
-                      <p className="mt-2 text-sm sm:text-base leading-7 text-slate-600 dark:text-white/70 max-w-3xl">
-                        {isAr ? service.subtitle.ar : service.subtitle.en}
-                      </p>
-                    </div>
-                  </div>
+                    <h1 className="mt-2 text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                      {service.title[lang]}
+                    </h1>
 
-                  <div className="mt-5 grid gap-3 sm:grid-cols-3 max-w-3xl">
-                    {(isAr ? service.micro.ar : service.micro.en).map((m, i) => (
-                      <MicroStat key={i} k={m.k} v={m.v} />
-                    ))}
+                    <p className="mt-3 max-w-3xl text-white/85">
+                      {service.subtitle[lang]}
+                    </p>
                   </div>
                 </div>
-
-              
-                <div className="lg:col-span-4">
-                  <LuxeCard className="bg-white/92 dark:bg-slate-950/95">
-                    <div className="p-5 sm:p-6">
-
-                      {(prev || next) && (
-                        <div className="mt-4 grid gap-2 border-t border-black/10 pt-4 dark:border-white/10">
-                          {prev && (
-                            <button
-                              onClick={() => nav(`/services/${prev.id}`)}
-                              className="
-                                w-full inline-flex items-center justify-between gap-3
-                                rounded-2xl border border-black/10 bg-white px-4 py-3
-                                text-sm font-semibold text-slate-900 hover:bg-black/[0.02] transition
-                                dark:border-white/10 dark:bg-slate-950 dark:text-white dark:hover:bg-white/[0.03]
-                              "
-                            >
-                              <span className="inline-flex items-center gap-2">
-                                {isAr ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-                                {t.prev}
-                              </span>
-                              <span className="opacity-80 truncate">{prev.title[lang]}</span>
-                            </button>
-                          )}
-
-                          {next && (
-                            <button
-                              onClick={() => nav(`/services/${next.id}`)}
-                              className="
-                                w-full inline-flex items-center justify-between gap-3
-                                rounded-2xl border border-black/10 bg-white px-4 py-3
-                                text-sm font-semibold text-slate-900 hover:bg-black/[0.02] transition
-                                dark:border-white/10 dark:bg-slate-950 dark:text-white dark:hover:bg-white/[0.03]
-                              "
-                            >
-                              <span className="inline-flex items-center gap-2">
-                                {t.next}
-                                {isAr ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                              </span>
-                              <span className="opacity-80 truncate">{next.title[lang]}</span>
-                            </button>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </LuxeCard>
-                </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
           </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="grid gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-8 space-y-8">
-            <Reveal>
-              <LuxeCard>
-                <div className="p-6 sm:p-8">
-                  <SectionTitle
-                    align={isAr ? "right" : "left"}
-                    title={isAr ? "لمحات من العمل" : "Work glimpses"}
-                  />
-                  <Masonry images={service.gallery || []} />
-                </div>
-              </LuxeCard>
-            </Reveal>
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-3">
+            <div className="lg:col-span-2 space-y-8">
+              <MotionCard>
+                <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                  {t.overview}
+                </h2>
+                <p className="mt-3 leading-7 text-slate-700 dark:text-white/80">
+                  {service.desc[lang]}
+                </p>
+              </MotionCard>
 
-            <Reveal delay={80}>
-              <LuxeCard>
-                <div className="p-6 sm:p-8">
-                  <SectionTitle
-                    align={isAr ? "right" : "left"}
-                    title={t.overviewTitle}
-                  />
-
-                  <p className="text-sm sm:text-base leading-7 text-slate-700 dark:text-white/80">
-                    {isAr ? service.desc.ar : service.desc.en}
-                  </p>
-
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {(isAr ? service.bullets.ar : service.bullets.en).map((x, i) => (
+              <MotionCard>
+                <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                  {t.bullets}
+                </h2>
+                <div className="mt-4 grid gap-2">
+                  {(isAr ? service.bullets.ar : service.bullets.en).map(
+                    (b, i) => (
                       <div
                         key={i}
-                        className="
-                          rounded-2xl border border-black/10 bg-black/[0.02] p-4
-                          dark:border-white/10 dark:bg-white/[0.03]
-                          flex items-start gap-2
-                        "
+                        className="flex gap-2 items-start text-slate-800 dark:text-white/85"
                       >
-                        <CheckCircle2 className="h-5 w-5 text-emerald-500 mt-0.5" />
-                        <div className="text-sm leading-6 text-slate-800 dark:text-white/85">
-                          {x}
-                        </div>
+                        <CheckCircle2 className="text-emerald-500 h-5 w-5 mt-0.5" />
+                        <span className="leading-7">{b}</span>
                       </div>
-                    ))}
-                  </div>
+                    )
+                  )}
                 </div>
-              </LuxeCard>
-            </Reveal>
+              </MotionCard>
 
-            <Reveal delay={120}>
-              <div>
-                <SectionTitle
-                  align={isAr ? "right" : "left"}
-                  title={t.deliverTitle}
-                />
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {(isAr ? service.scope.ar : service.scope.en).map((x, i) => (
+              <MotionCard>
+                <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                  {t.scope}
+                </h2>
+                <div className="mt-4 grid gap-3">
+                  {(isAr ? service.scope.ar : service.scope.en).map((s, i) => (
                     <div
                       key={i}
                       className="
-                        rounded-3xl border border-black/10 bg-white p-5
-                        dark:border-white/10 dark:bg-slate-950
-                        shadow-[0_12px_40px_rgba(2,6,23,0.06)]
-                        dark:shadow-[0_20px_70px_rgba(0,0,0,0.40)]
-                        transition hover:-translate-y-1
+                        rounded-2xl border border-black/10 p-4
+                        bg-black/[0.02] dark:bg-white/[0.04]
+                        text-slate-800 dark:text-white/85
                       "
                     >
-                      <div className="flex items-start gap-3">
-                        <div
-                          className="
-                            mt-0.5 h-10 w-10 rounded-2xl grid place-items-center
-                            bg-gradient-to-br from-sky-500/15 to-emerald-500/10
-                            ring-1 ring-black/10 dark:ring-white/10
-                          "
-                        >
-                          <span className="h-2 w-2 rounded-full bg-sky-500" />
-                        </div>
-                        <div className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white leading-7">
-                          {x}
-                        </div>
-                      </div>
+                      {s}
                     </div>
                   ))}
                 </div>
-              </div>
-            </Reveal>
+              </MotionCard>
 
-            <Reveal delay={160}>
-              <LuxeCard>
-                <div className="p-6 sm:p-8">
-                  <SectionTitle
-                    align={isAr ? "right" : "left"}
-                    title={t.processTitle}
-                    desc={t.processDesc}
-                  />
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <FeatureItem
-                      icon={ClipboardCheck}
-                      title={isAr ? "التخطيط والمتطلبات" : "Requirements & plan"}
-                      desc={isAr ? "نحدد نطاق العمل والمواصفات والمراحل." : "Define scope, specs and milestones."}
-                    />
-                    <FeatureItem
-                      icon={ShieldCheck}
-                      title={isAr ? "الجودة والسلامة" : "Quality & HSE"}
-                      desc={isAr ? "إجراءات ضبط الجودة والسلامة بالموقع." : "QA/QC and HSE procedures on site."}
-                    />
-                    <FeatureItem
-                      icon={Timer}
-                      title={isAr ? "تسليم مرحلي" : "Phased delivery"}
-                      desc={isAr ? "تقسيم وتسليم لتقليل المخاطر." : "Phased handover to reduce risk."}
-                    />
-                    <FeatureItem
-                      icon={CheckCircle2}
-                      title={isAr ? "اختبارات وتسليم نهائي" : "Testing & final handover"}
-                      desc={isAr ? "فحص + توثيق + تسليم مطابق." : "Testing + documentation + compliant handover."}
-                    />
+              <MotionCard>
+                <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                  {t.process}
+                </h2>
+                <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                  <div className="flex gap-3 items-start text-slate-800 dark:text-white/85">
+                    <ClipboardCheck className="h-6 w-6 text-sky-600 dark:text-sky-300 mt-0.5" />
+                    <span>
+                      {isAr
+                        ? "تحديد المتطلبات وخطة التنفيذ"
+                        : "Requirements & delivery planning"}
+                    </span>
+                  </div>
+                  <div className="flex gap-3 items-start text-slate-800 dark:text-white/85">
+                    <ShieldCheck className="h-6 w-6 text-sky-600 dark:text-sky-300 mt-0.5" />
+                    <span>
+                      {isAr ? "الجودة والسلامة" : "Quality & HSE controls"}
+                    </span>
+                  </div>
+                  <div className="flex gap-3 items-start text-slate-800 dark:text-white/85">
+                    <Timer className="h-6 w-6 text-sky-600 dark:text-sky-300 mt-0.5" />
+                    <span>
+                      {isAr ? "تسليم مرحلي" : "Phased delivery & handover"}
+                    </span>
                   </div>
                 </div>
-              </LuxeCard>
-            </Reveal>
+              </MotionCard>
 
-            <Reveal delay={200}>
-              <div>
-                <SectionTitle
-                  align={isAr ? "right" : "left"}
-                  title={t.relatedTitle}
-                  desc={t.relatedDesc}
-                />
+              <MotionCard>
+                <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                  {t.related}
+                </h2>
 
                 {related.length === 0 ? (
-                  <LuxeCard>
-                    <div className="p-6 text-sm text-slate-700 dark:text-white/70">
-                      {isAr
-                        ? "لا توجد مشاريع."
-                        : "No projects."}
-                    </div>
-                  </LuxeCard>
+                  <p className="mt-3 text-slate-600 dark:text-white/70">
+                    {isAr ? "لا توجد مشاريع مرتبطة." : "No related projects."}
+                  </p>
                 ) : (
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {related.map((p) => (
-                      <LuxeCard key={p.id} className="transition hover:-translate-y-1">
-                        <div className="p-6">
+                  <>
+                    <div className="mt-4 grid gap-4">
+                      {related.map((p) => (
+                        <div
+                          key={p.id}
+                          className="
+                            group rounded-2xl border border-black/10
+                            bg-white dark:bg-slate-950
+                            p-4 sm:p-5
+                            transition-transform duration-300
+                            hover:-translate-y-1
+                            shadow-[0_10px_40px_rgba(15,23,42,0.08)]
+                            dark:shadow-[0_18px_60px_rgba(0,0,0,0.55)]
+                          "
+                        >
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0">
                               <div className="text-xs font-semibold text-slate-500 dark:text-white/60">
                                 {p.year}
                               </div>
-                              <div className="mt-1 text-base font-extrabold text-slate-900 dark:text-white">
-                                {isAr ? p.name.ar : p.name.en}
+                              <div className="mt-1 text-base font-extrabold text-slate-900 dark:text-white line-clamp-2">
+                                {p.name[lang]}
                               </div>
                             </div>
-                            <ExternalLink className="h-4 w-4 text-sky-600 dark:text-sky-300 opacity-70" />
+                            <span className="shrink-0 inline-flex items-center rounded-full bg-emerald-500/10 border border-emerald-400/30 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
+                              {p.value}
+                            </span>
                           </div>
 
-                          <div className="mt-4 grid gap-2 text-sm text-slate-700 dark:text-white/75">
-                            <div className="flex justify-between gap-3">
-                              <span className="font-semibold">{isAr ? "العميل" : "Client"}</span>
-                              <span className="text-right">{isAr ? p.client.ar : p.client.en}</span>
+                          <div className="mt-3 grid gap-1 text-xs sm:text-sm text-slate-600 dark:text-white/70">
+                            <div>
+                              <span className="font-semibold">
+                                {isAr ? "العميل: " : "Client: "}
+                              </span>
+                              {p.client[lang]}
                             </div>
-                            <div className="flex justify-between gap-3">
-                              <span className="font-semibold">{isAr ? "المانح" : "Donor"}</span>
-                              <span className="text-right">{isAr ? p.donor.ar : p.donor.en}</span>
-                            </div>
-                            <div className="flex justify-between gap-3">
-                              <span className="font-semibold">{isAr ? "القيمة" : "Value"}</span>
-                              <span className="text-right">{p.value}</span>
+                            <div>
+                              <span className="font-semibold">
+                                {isAr ? "الجهة المانحة: " : "Donor: "}
+                              </span>
+                              {p.donor[lang]}
                             </div>
                           </div>
-
-                          <NavLink
-                            to="/projects"
-                            className="
-                              mt-4 inline-flex items-center gap-2 text-sm font-semibold
-                              text-emerald-700 hover:text-emerald-600
-                              dark:text-emerald-300 dark:hover:text-emerald-200
-                              transition
-                            "
-                          >
-                            {isAr ? "عرض المشاريع" : "Go to Projects"}
-                            <ArrowRight className={cx("h-4 w-4", isAr && "rotate-180")} />
-                          </NavLink>
                         </div>
-                      </LuxeCard>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+
+                    {relatedAll.length > 4 && (
+                      <div className="mt-6 flex justify-end">
+                        <NavLink
+                          to="/projects"
+                          className="
+                            inline-flex items-center gap-2 text-sm font-semibold
+                            text-emerald-700 hover:text-emerald-600
+                            dark:text-emerald-300 dark:hover:text-emerald-200
+                          "
+                        >
+                          {t.seeAllProjects}
+                          <ArrowRight
+                            className={cx("h-4 w-4", isAr && "rotate-180")}
+                          />
+                        </NavLink>
+                      </div>
+                    )}
+                  </>
                 )}
-              </div>
-            </Reveal>
-          </div>
+              </MotionCard>
+            </div>
 
-          <div className="lg:col-span-4">
-            <Reveal from={isAr ? "left" : "right"}>
-              <div className="sticky top-24 space-y-5">
-                <LuxeCard>
-                  <div className="p-6">
-                    <div className="text-sm font-extrabold text-slate-900 dark:text-white">
-                      {isAr ? "جاهز لمناقشة مشروعك؟" : "Ready to discuss your project?"}
-                    </div>
-                    <div className="mt-2 text-sm leading-6 text-slate-600 dark:text-white/70">
-                      {isAr
-                        ? "ارسل المتطلبات الأساسية وسنرد بخطة تنفيذ واضحة."
-                        : "Send a brief and we’ll respond with a clear delivery plan."}
-                    </div>
+            <div className="space-y-5">
+              <MotionCard>
+                <div className="font-extrabold text-slate-900 dark:text-white">
+                  {isAr ? "جاهز لمناقشة مشروعك؟" : "Ready to discuss your project?"}
+                </div>
+                <p className="mt-2 text-sm leading-7 text-slate-700 dark:text-white/75">
+                  {isAr
+                    ? "ارسل المتطلبات الأساسية وسنعود إليك بخطة تنفيذ واضحة."
+                    : "Send a short brief and we will return with a clear delivery approach."}
+                </p>
 
-                    <div className="mt-4 grid gap-3">
-                      <NavLink
-                        to="/contact"
-                        className="
-                          inline-flex items-center justify-center gap-2 rounded-xl
-                          bg-sky-600 px-4 py-3 text-sm font-semibold text-white
-                          hover:bg-sky-500 transition shadow-lg shadow-sky-600/25
-                        "
-                      >
-                        {t.contact}
-                        <ArrowRight className={cx("h-4 w-4", isAr && "rotate-180")} />
-                      </NavLink>
+                <div className="mt-4 grid gap-3">
+                  <NavLink
+                    to="/contact"
+                    className="
+                      inline-flex items-center justify-center gap-2 rounded-xl
+                      bg-sky-600 px-5 py-3 text-sm font-semibold text-white
+                      hover:bg-sky-500 transition shadow-lg shadow-sky-600/20
+                    "
+                  >
+                    {t.contact}
+                    <ArrowRight
+                      className={cx("h-4 w-4", isAr && "rotate-180")}
+                    />
+                  </NavLink>
 
-                      <NavLink
-                        to="/services"
-                        className="
-                          inline-flex items-center justify-center gap-2 rounded-xl
-                          border border-black/10 bg-black/[0.03] px-4 py-3 text-sm font-semibold
-                          text-slate-900 hover:bg-black/[0.06]
-                          dark:border-white/15 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10
-                          transition
-                        "
-                      >
-                        {t.back}
-                        <ArrowRight className={cx("h-4 w-4", isAr && "rotate-180")} />
-                      </NavLink>
-                    </div>
-                  </div>
-                </LuxeCard>
-              </div>
-            </Reveal>
+                  <NavLink
+                    to="/services"
+                    className="
+                      inline-flex items-center justify-center gap-2 rounded-xl
+                      border border-black/10 bg-black/[0.03] px-5 py-3 text-sm font-semibold
+                      text-slate-900 hover:bg-black/[0.06]
+                      dark:border-white/15 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10
+                      transition
+                    "
+                  >
+                    {t.back}
+                    <ArrowRight
+                      className={cx("h-4 w-4", isAr && "rotate-180")}
+                    />
+                  </NavLink>
+                </div>
+              </MotionCard>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
