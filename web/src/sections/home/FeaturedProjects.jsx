@@ -52,7 +52,7 @@ const featured = [
     location: { ar: "خانيونس – فلسطين", en: "Khan Younis, Palestine" },
     year: "2025",
     image:
-      "https://images.unsplash.com/photo-1496307653780-42ee777d4833?auto=format&fit=crop&w=2000&q=70",
+      "https://res.cloudinary.com/dptlhu0s0/image/upload/v1766679900/photo_5938552633830345663_y_qnnvfi.jpg",
   },
   {
     id: "salah-al-din-road-rafah-2012",
