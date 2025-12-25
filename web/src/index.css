@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 html, body {
   width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
 }
 
 #root {
@@ -36,6 +42,21 @@ section.snap {
     scroll-margin-top: 88px; 
   }
 }
+
+body {
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+:lang(ar) {
+  font-family: "Tajawal", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:lang(en), :lang(en-US), :lang(en-GB) {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+
 
 
 

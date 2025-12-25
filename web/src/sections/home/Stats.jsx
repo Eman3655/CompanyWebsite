@@ -7,7 +7,7 @@ const stats = [
   {
     key: "years",
     value: "20+",
-    title: { ar: "سنوات من التميّز", en: "Years of Excellence" },
+    title: { ar: "سنة من التميّز", en: "Years of Excellence" },
     desc: {
       ar: "تأسست عام 2005 — خبرة متواصلة في المقاولات",
       en: "Established in 2005 — continuous excellence in contracting",

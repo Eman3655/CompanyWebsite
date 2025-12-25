@@ -12,7 +12,7 @@ export default function ContactPage() {
     addressAR: "خانيونس – فلسطين",
     addressEN: "Khan Younis – Palestine",
     telfax: "+970 8 2072330",
-    mobile: "+970 599 401196",
+    mobile: "+972 599 401196",
     email: "enganasrekeb@gmail.com",
   }), []);
 
@@ -173,7 +173,7 @@ export default function ContactPage() {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: isAr ? "شركة المشروعات الهندسية" : "Engineering Projects Company",
-              url: "https://example.com",
+              url: "https://companywebsite-production.up.railway.app/",
               email: CONTACT.email,
               telephone: CONTACT.telfax,
               address: {
