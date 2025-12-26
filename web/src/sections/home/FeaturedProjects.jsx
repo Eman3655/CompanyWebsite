@@ -215,7 +215,7 @@ export default function FeaturedProjects({ scrollDir = "down" }) {
               dark:text-emerald-300 dark:hover:text-emerald-200
             "
           >
-            {lang === "ar" ? "عرض كل المشاريع" : "See All Projects"}
+            {lang === "ar" ? "عرض مشاريع أخرى" : "See More Projects"}
             <ArrowRight className={`h-4 w-4 ${lang === "ar" ? "rotate-180" : ""}`} />
           </NavLink>
         </div>

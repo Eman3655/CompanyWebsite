@@ -344,17 +344,17 @@ function ProjectCardCompact({ p, lang, isAr, onOpen }) {
     <Reveal>
       <article
         className={cx(
-          "group relative rounded-2xl overflow-visible",
+          "group relative rounded-2xl overflow-visible h-full flex flex-col",   
           "border border-black/10 bg-white/70",
           "dark:border-white/10 dark:bg-slate-950/60",
           "backdrop-blur-[2px]",
-          "transition-transform duration-300 hover:-translate-y-2"
+          "transition-transform duration-300 sm:hover:-translate-y-2"
         )}
       >
         <div
           className={cx(
-            "pointer-events-none absolute -inset-0.5 rounded-2xl",
-            "opacity-0 group-hover:opacity-100 transition duration-300 z-30",
+            "pointer-events-none absolute inset-0 rounded-2xl",
+            "opacity-0 sm:group-hover:opacity-100 transition duration-300 z-30",
             "ring-1 ring-sky-400/60",
             "shadow-[0_0_0_1px_rgba(56,189,248,0.22),0_0_40px_rgba(56,189,248,0.12)]",
             "dark:shadow-[0_0_0_1px_rgba(56,189,248,0.35),0_0_45px_rgba(56,189,248,0.18)]"
@@ -370,64 +370,54 @@ function ProjectCardCompact({ p, lang, isAr, onOpen }) {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/85 via-white/10 to-transparent dark:from-slate-950/95 dark:via-slate-950/25" />
-
             <div className={`absolute top-3 ${isAr ? "right-3" : "left-3"}`}>
-              <span
-                className={cx(
-                  "inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold",
-                  "bg-white/70 text-slate-800 ring-1 ring-black/10",
-                  "dark:bg-white/10 dark:text-white/80 dark:ring-white/15"
-                )}
-              >
+              <span className="inline-flex rounded-full px-2.5 py-1 text-[11px] font-semibold bg-white/70 text-slate-800 ring-1 ring-black/10 dark:bg-white/10 dark:text-white/80 dark:ring-white/15">
                 {p.category[lang]}
               </span>
             </div>
           </div>
+        </div>
 
-          <div className="p-4 sm:p-5">
-            <div className="flex min-h-[148px] flex-col">
-              <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white line-clamp-2">
-                {p.title[lang]}
-              </h3>
+        <div className="p-4 sm:p-5 flex-1 flex flex-col">  
+          <div className="flex-1 flex flex-col">           
+            <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white line-clamp-2">
+              {p.title[lang]}
+            </h3>
 
-              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-white/70 line-clamp-2">
-                {p.desc[lang]}
-              </p>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-white/70 line-clamp-2">
+              {p.desc[lang]}
+            </p>
 
-              <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-white/60">
-                <span className="inline-flex items-center gap-1.5">
-                  <MapPin className="h-4 w-4" />
-                  {p.location[lang]}
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4" />
-                  {p.year}
-                </span>
-              </div>
+            <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-white/60">
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-4 w-4" />
+                {p.location[lang]}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Calendar className="h-4 w-4" />
+                {p.year}
+              </span>
+            </div>
 
-              <div className="mt-auto pt-4 flex items-center justify-between">
-                <button
-                  onClick={onOpen}
-                  className={cx(
-                    "inline-flex items-center gap-2 text-sm font-semibold transition",
-                    "text-sky-700 hover:text-sky-600",
-                    "dark:text-sky-300 dark:hover:text-sky-200"
-                  )}
-                >
-                  {isAr ? "اعرف المزيد" : "Learn More"}
-                  <ArrowRight
-                    className={`h-4 w-4 ${isAr ? "rotate-180" : ""}`}
-                  />
-                </button>
-
-                <span
-                  className={cx(
-                    "h-px flex-1 hidden sm:block",
-                    "bg-black/10 dark:bg-white/10",
-                    isAr ? "mr-4" : "ml-4"
-                  )}
-                />
-              </div>
+            <div className="mt-auto pt-4 flex items-center justify-between">
+              <button
+                onClick={onOpen}
+                className={cx(
+                  "inline-flex items-center gap-2 text-sm font-semibold transition",
+                  "text-sky-700 hover:text-sky-600",
+                  "dark:text-sky-300 dark:hover:text-sky-200"
+                )}
+              >
+                {isAr ? "اعرف المزيد" : "Learn More"}
+                <ArrowRight className={`h-4 w-4 ${isAr ? "rotate-180" : ""}`} />
+              </button>
+              <span
+                className={cx(
+                  "h-px flex-1 hidden sm:block",
+                  "bg-black/10 dark:bg-white/10",
+                  isAr ? "mr-4" : "ml-4"
+                )}
+              />
             </div>
           </div>
         </div>
@@ -435,6 +425,7 @@ function ProjectCardCompact({ p, lang, isAr, onOpen }) {
     </Reveal>
   );
 }
+
 
 function MediaGallery({ media = [], isAr }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -757,7 +748,7 @@ export default function ProjectDetails() {
                   "dark:text-emerald-300 dark:hover:text-emerald-200"
                 )}
               >
-                {isAr ? "عرض كل المشاريع" : "See All Projects"}
+                {isAr ? "عرض مشاريع أخرى" : "See More Projects"}
                 <ArrowRight
                   className={`h-4 w-4 ${isAr ? "rotate-180" : ""}`}
                 />
@@ -773,17 +764,18 @@ export default function ProjectDetails() {
                 </p>
               </MotionCard>
             ) : (
-              <div className="mt-6 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {related.map((p) => (
-                  <ProjectCardCompact
-                    key={p.id}
-                    p={p}
-                    lang={lang}
-                    isAr={isAr}
-                    onOpen={() => navigate(`/projects/${p.id}`)}
-                  />
-                ))}
-              </div>
+<div className="mt-6 grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4 items-stretch">
+  {related.map((p) => (
+    <ProjectCardCompact
+      key={p.id}
+      p={p}
+      lang={lang}
+      isAr={isAr}
+      onOpen={() => navigate(`/projects/${p.id}`)}
+    />
+  ))}
+</div>
+
             )}
 
             <div className="mt-8 sm:hidden">
@@ -795,7 +787,7 @@ export default function ProjectDetails() {
                   "dark:text-emerald-300 dark:hover:text-emerald-200"
                 )}
               >
-                {isAr ? "عرض كل المشاريع" : "See All Projects"}
+                {isAr ? "عرض مشاريع أخرى" : "See More Projects"}
                 <ArrowRight
                   className={`h-4 w-4 ${isAr ? "rotate-180" : ""}`}
                 />

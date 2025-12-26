@@ -24,7 +24,7 @@ const stats = [
   },
   {
     key: "projects",
-    value: "12+",
+    value: "50+",
     title: { ar: "مشاريع مُنفَّذة", en: "Projects Delivered" },
     desc: {
       ar: "منشآت صحية، طرق وأسواق (2007–2025)",

@@ -413,11 +413,6 @@ export default function ProjectsPage() {
 
         <Reveal>
           <div className="mt-10 flex flex-col items-center gap-3 text-center">
-            <div className="text-sm text-slate-600 dark:text-white/70">
-              {isAr
-                ? `إجمالي المشاريع المعروضة: ${list.length}`
-                : `Showing ${list.length} project(s).`}
-            </div>
 
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

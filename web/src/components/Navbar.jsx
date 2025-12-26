@@ -55,9 +55,9 @@ export default function Navbar() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <NavLink to="/" className="flex items-center gap-3 min-w-0">
             <img
-              src="https://res.cloudinary.com/dptlhu0s0/image/upload/v1766167529/Screenshot_2025-12-19_185321_2_-fotor-bg-remover-202512192057_jxqsxy.png"
+              src="https://res.cloudinary.com/dptlhu0s0/image/upload/v1766769082/176676854673862412_puueym.png"
               alt="Logo"
-              className="h-9 w-9 rounded-full bg-white/5 ring-1 ring-white/10 object-cover"
+              className="h-8 w-auto object-contain"
             />
             <span className="text-white font-bold tracking-tight truncate">
               {lang === "ar"
