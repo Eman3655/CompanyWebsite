@@ -55,7 +55,7 @@ export default function Navbar() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <NavLink to="/" className="flex items-center gap-3 min-w-0">
             <img
-              src="https://res.cloudinary.com/dptlhu0s0/image/upload/v1766769082/176676854673862412_puueym.png"
+              src="https://res.cloudinary.com/dptlhu0s0/image/upload/v1767639296/Engineering_projects_company_logo_design_tvdqyy.png"
               alt="Logo"
               className="h-8 w-auto object-contain"
             />
